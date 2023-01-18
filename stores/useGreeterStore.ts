@@ -4,9 +4,8 @@ import { create } from 'zustand'
 import { immer } from 'zustand/middleware/immer'
 
 interface GreeterState {
-    name: number
+    name: string
     setName: (newName: string) => void
-    resetName: () => void
 }
 
 const useGreeterStore = create<GreeterState>()(
