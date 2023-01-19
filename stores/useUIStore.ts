@@ -4,29 +4,36 @@ import { create } from 'zustand'
 import { immer } from 'zustand/middleware/immer'
 
 interface UIState {
-    filtersWidth: number
-    filtersSticky: boolean
-    publicationsBound: boolean
-    publicationsCount: number
-    setPublicationsCount: (newCount: number) => void
-    toggle: (property: string) => () => void
+  [key: string]: number | boolean | ((parameter: any) => void)
+  filtersWidth: number
+  filtersSticky: boolean
+  filtersCount: number
+  searchBound: boolean
+  searchCount: number
+  paginationTypeA: boolean
+  setSearchCount: (newCount: number) => void
+  setFiltersCount: (newCount: number) => void
+  toggle: (property: string) => () => void
 }
 
 const initialState = {
   filtersWidth: 500,
   filtersSticky: true,
-  publicationsBound: false,
-  publicationsCount: 15,
+  filtersCount: 6,
+  searchBound: false,
+  searchCount: 15,
+  paginationTypeA: true,
 }
 
 const useUIStore = create<UIState>()(
-    immer((set) => ({
-        ...initialState,
-        setPublicationsCount: (newCount) => set((state) => {state.publicationsCount = newCount}),
-        toggle: (property) => () => set((state) => {
-          state[property] = !state[property]
-        })
-    }))
+  immer((set) => ({
+    ...initialState,
+    setSearchCount: (newCount) => set((state) => {state.searchCount = newCount}),
+    setFiltersCount: (newCount) => set((state) => {state.filtersCount = newCount}),
+    toggle: (property) => () => set((state: UIState) => {
+      state[property] = !state[property]
+    })
+  }))
 )
 
 export default useUIStore

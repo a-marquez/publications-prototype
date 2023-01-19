@@ -11,34 +11,48 @@ import { TextField, Slider, Stack, Switch } from '@mui/material'
 import useUIStore from '../stores/useUIStore'
 
 export default function Debug() {
-  const { toggle, filtersSticky, publicationsCount, setPublicationsCount, publicationsBound} = useUIStore(state => state)
+  const { toggle, filtersSticky, filtersCount,
+    setFiltersCount, searchCount, setSearchCount, searchBound,
+    paginationTypeA} = useUIStore(state => state)
 
   return (
     <div className='fixed z-50 bottom-0 left-0'>
       <div
         className='flex flex-col p-2 sticky top-0 right-0 self-start opacity-25 hover:opacity-100'
-        style={{width: 300}}
+        style={{width: 250}}
       >
         <Accordion>
           <AccordionSummary
             expandIcon={<ExpandMoreIcon />}
-            aria-controls="panel1a-content"
-            id="panel1a-header"
+            className='bg-orange-400 rounded'
           >
             <Typography>Debug</Typography>
           </AccordionSummary>
           <AccordionDetails>
-            <div className='flex flex-col gap-4'>
+            <div className='flex flex-col gap-2'>
               <div className='flex justify-between align-center'>
                 <Typography className='self-center'>Filters Sticky</Typography>
-                <Switch checked={filtersSticky} onChange={(event) => toggle('filtersSticky')(event.target.value === 'true')} />
+                <Switch checked={filtersSticky} onChange={(event) => toggle('filtersSticky')()} />
               </div>
               <Stack direction={'column'}>
-                <Typography>Publications Count</Typography>
+                <Typography>Filters Count</Typography>
                 <Slider
-                  value={publicationsCount}
-                  onChange={(event) => {
-                    setPublicationsCount(parseInt(event.target.value))
+                  value={filtersCount}
+                  onChange={(event, value) => {
+                    setFiltersCount(value as number)
+                  }}
+                  valueLabelDisplay='auto'
+                  step={1}
+                  min={1}
+                  max={10}
+                />
+              </Stack>
+              <Stack direction={'column'}>
+                <Typography>Search Count</Typography>
+                <Slider
+                  value={searchCount}
+                  onChange={(event, value) => {
+                    setSearchCount(value as number)
                   }}
                   valueLabelDisplay='auto'
                   step={5}
@@ -47,8 +61,12 @@ export default function Debug() {
                 />
               </Stack>
               <div className='flex justify-between align-center'>
-                <Typography className='self-center'>Publications Bound</Typography>
-                <Switch checked={publicationsBound} onChange={(event) => toggle('publicationsBound')(event.target.value === 'true')} />
+                <Typography className='self-center'>Search Bound</Typography>
+                <Switch checked={searchBound} onChange={toggle('searchBound')} />
+              </div>
+              <div className='flex justify-between align-center'>
+                <Typography className='self-center'>Pagination {paginationTypeA ? 'A' : 'B'}</Typography>
+                <Switch checked={paginationTypeA} onChange={toggle('paginationTypeA')} />
               </div>
             </div>
           </AccordionDetails>

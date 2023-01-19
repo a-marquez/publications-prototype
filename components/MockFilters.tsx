@@ -5,7 +5,12 @@ import AccordionDetails from '@mui/material/AccordionDetails'
 import Typography from '@mui/material/Typography'
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore'
 
-export default function MockFilters({count}) {
+interface MockFiltersProps {
+  count: number
+}
+
+export default function MockFilters({count}: MockFiltersProps) {
+
   return (
     <div>
       {Array(count).fill(0).map((value, index) => (
@@ -13,8 +18,6 @@ export default function MockFilters({count}) {
           <AccordionSummary
             className='bg-blue-100'
             expandIcon={<ExpandMoreIcon />}
-            aria-controls="panel1a-content"
-            id="panel1a-header"
           >
             <Typography>Filter {index + 1}</Typography>
           </AccordionSummary>

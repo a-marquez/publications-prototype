@@ -6,7 +6,7 @@ import Typography from '@mui/material/Typography'
 import AddIcon from '@mui/icons-material/Add'
 import RemoveIcon from '@mui/icons-material/Remove'
 
-export default function SearchResult() {
+export default function SearchResult({title='Search Result'}) {
   const [expanded, setExpanded] = useState(false)
   const icon = expanded === true ? <RemoveIcon /> : <AddIcon />
 
@@ -19,10 +19,11 @@ export default function SearchResult() {
       <AccordionSummary
         expandIcon={icon}
       >
-        <Typography>SearchResult</Typography>
+        <Typography>{title}</Typography>
       </AccordionSummary>
       <AccordionDetails>
-
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse
+        malesuada lacus ex, sit amet blandit leo lobortis eget.
       </AccordionDetails>
     </Accordion>
   );
