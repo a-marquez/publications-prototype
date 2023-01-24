@@ -6,11 +6,11 @@ import SearchPagination from './SearchPagination'
 import useUIStore from '../stores/useUIStore'
 
 export default function SearchHeader() {
-  const placeholderRef = useRef<HTMLDivElement>(null)
-  const headerRef = useRef<HTMLDivElement>(null)
+  const placeholderRef = useRef(null)
+  const headerRef = useRef(null)
   const [isSticky, setIsSticky] = useState(false)
-  const [placeholderHeight, setplaceholderHeight] = useState<number | string>('initial')
-  const [width, setWidth] = useState<number | string>('initial')
+  const [placeholderHeight, setplaceholderHeight] = useState('initial')
+  const [width, setWidth] = useState('initial')
   const [ascending, setAscending] = useState(true)
 
   const paginationTypeA = useUIStore((state) => state.paginationTypeA)
@@ -18,8 +18,8 @@ export default function SearchHeader() {
     if (placeholderRef.current && headerRef.current) {
       let isSticky = placeholderRef.current.getBoundingClientRect().top <= 0
       setIsSticky(isSticky)
-      setWidth(isSticky === true ? placeholderRef?.current?.clientWidth : 'initial')
-      setplaceholderHeight(isSticky === true ? headerRef?.current?.clientHeight : 'initial')
+      setWidth(isSticky === true ? placeholderRef.current.clientWidth : 'initial')
+      setplaceholderHeight(isSticky === true ? headerRef.current.clientHeight : 'initial')
     }
   }
 

@@ -5,11 +5,7 @@ import AccordionDetails from '@mui/material/AccordionDetails'
 import Typography from '@mui/material/Typography'
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore'
 
-interface MockFiltersProps {
-  count: number
-}
-
-export default function MockFilters({count}: MockFiltersProps) {
+export default function MockFilters({count}) {
 
   return (
     <div>

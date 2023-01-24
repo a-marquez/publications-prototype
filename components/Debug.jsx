@@ -39,7 +39,7 @@ export default function Debug() {
                 <Slider
                   value={filtersCount}
                   onChange={(event, value) => {
-                    setFiltersCount(value as number)
+                    setFiltersCount(value)
                   }}
                   valueLabelDisplay='auto'
                   step={1}
@@ -52,7 +52,7 @@ export default function Debug() {
                 <Slider
                   value={searchCount}
                   onChange={(event, value) => {
-                    setSearchCount(value as number)
+                    setSearchCount(value)
                   }}
                   valueLabelDisplay='auto'
                   step={5}
